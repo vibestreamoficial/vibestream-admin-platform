@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/(?!api)",
+      "dest": "public/index.html"
+    }
+  ],
+  "env": {
+    "JWT_SECRET": "@jwt_secret",
+    "DATABASE_URL": "@database_url",
+    "AGORA_APP_ID": "@agora_app_id",
+    "AGORA_APP_CERTIFICATE": "@agora_app_certificate"
+  }
+}
